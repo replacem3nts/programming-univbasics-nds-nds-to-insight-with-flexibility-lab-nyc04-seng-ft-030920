@@ -45,13 +45,12 @@ def movies_with_director_key(name, movies_collection)
   ds_mov_array
 end
 
-
 def gross_per_studio(collection)
   movie_no = 0
   studio_grosses = {}
   while movie_no < collection.length do
     studio_key = collection[movie_no][:studio]
-    if !studio_grosses.has_key?(studio_key) 
+    if !studio_grosses[studio_key] 
       studio_grosses[studio_key] = collection[movie_no][:worldwide_gross]
     else 
       studio_grosses[studio_key] += collection[movie_no][:worldwide_gross]
@@ -59,17 +58,6 @@ def gross_per_studio(collection)
     movie_no += 1
   end
   studio_grosses
-  # GOAL: Given an Array of Hashes where each Hash represents a movie,
-  # return a Hash that includes the total worldwide_gross of all the movies from
-  # each studio.
-  #
-  # INPUT:
-  # * collection: Array of Hashes where each Hash where each Hash represents a movie
-  #
-  # RETURN:
-  #
-  # Hash whose keys are the studio names and whose values are the sum
-  # total of all the worldwide_gross numbers for every movie in the input Hash
 end
 
 def movies_with_directors_set(source)
@@ -79,17 +67,7 @@ def movies_with_directors_set(source)
     all_movies_by_d << movies_with_director_key(source[d_no][:name], source[d_no][:movies])
     d_no += 1
   end
-all_movies_by_d
-  # GOAL: For each director, find their :movies Array and stick it in a new Array
-  #
-  # INPUT:
-  # * source: An Array of Hashes containing director information including
-  # :name and :movies
-  #
-  # RETURN:
-  #
-  # Array of Arrays containing all of a director's movies. Each movie will need
-  # to have a :director_name key added to it.
+  all_movies_by_d
 end
 
 # ----------------    End of Your Code Region --------------------
