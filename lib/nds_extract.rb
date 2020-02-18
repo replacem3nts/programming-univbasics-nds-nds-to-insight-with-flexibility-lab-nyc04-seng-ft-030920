@@ -32,22 +32,17 @@ end
 
 
 # Your code after this point
+require 'pp'
 
 def movies_with_director_key(name, movies_collection)
-  # GOAL: For each Hash in an Array (movies_collection), provide a collection
-  # of movies and a directors name to the movie_with_director_name method
-  # and accumulate the returned Array of movies into a new Array that's
-  # returned by this method.
-  #
-  # INPUT:
-  # * name: A director's name
-  # * movies_collection: An Array of Hashes where each Hash represents a movie
-  #
-  # RETURN:
-  #
-  # Array of Hashes where each Hash represents a movie; however, they should all have a
-  # :director_name key. This addition can be done by using the provided
-  # movie_with_director_name method
+  mov_no = 0
+  ds_mov_array = []
+  while mov_no < movies_collection.length do
+    d_name = movie_with_director_name(name, movies_collection[mov_no])
+    ds_mov_array << d_name
+    mov_no += 1
+  end
+  ds_mov_array
 end
 
 
@@ -66,6 +61,13 @@ def gross_per_studio(collection)
 end
 
 def movies_with_directors_set(source)
+  d_no = 0
+  all_movies_by_d = []
+  while d_no < source.length do
+    all_movies_by_d << source[d_no][:movies]
+    d_no += 1
+  end
+ pp all_movies_by_d
   # GOAL: For each director, find their :movies Array and stick it in a new Array
   #
   # INPUT:
