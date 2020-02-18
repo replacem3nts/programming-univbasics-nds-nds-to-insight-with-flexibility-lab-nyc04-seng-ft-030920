@@ -69,7 +69,7 @@ def movies_with_directors_set(source)
     all_movies_by_dir << movies_with_director_key(dir_name, dir_movies)
     dir_no += 1
   end
-  all_movies_by_d
+  all_movies_by_dir
 end
 
 # ----------------    End of Your Code Region --------------------
