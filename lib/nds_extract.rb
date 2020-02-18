@@ -50,7 +50,17 @@ def gross_per_studio(collection)
   movie_no = 0
   studio_grosses = {}
   while movie_no < collection.length do
-    if studio_grosses.has_key?collection[movie_no][:studio]
+    studio_key = collection[movie_no][:studio]
+    if studio_grosses.has_key?("#{studio_key}") {
+      studio_grosses[studio_key] += collection[movie_no][:worldwide_gross]
+    }
+    else {
+      studio_grosses[movie_no][:studio] = collection[movie_no][:worldwide_gross]
+    }
+    end
+    movie_no += 1
+  end
+  studio_grosses
   # GOAL: Given an Array of Hashes where each Hash represents a movie,
   # return a Hash that includes the total worldwide_gross of all the movies from
   # each studio.
