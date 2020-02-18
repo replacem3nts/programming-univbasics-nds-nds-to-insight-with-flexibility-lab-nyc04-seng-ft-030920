@@ -32,50 +32,45 @@ end
 
 
 # Your code after this point
+require 'pp'
 
 def movies_with_director_key(name, movies_collection)
-  # GOAL: For each Hash in an Array (movies_collection), provide a collection
-  # of movies and a directors name to the movie_with_director_name method
-  # and accumulate the returned Array of movies into a new Array that's
-  # returned by this method.
-  #
-  # INPUT:
-  # * name: A director's name
-  # * movies_collection: An Array of Hashes where each Hash represents a movie
-  #
-  # RETURN:
-  #
-  # Array of Hashes where each Hash represents a movie; however, they should all have a
-  # :director_name key. This addition can be done by using the provided
-  # movie_with_director_name method
+  mov_no = 0
+  ds_mov_array = []
+  while mov_no < movies_collection.length do
+    d_name = movie_with_director_name(name, movies_collection[mov_no])
+    ds_mov_array << d_name
+    mov_no += 1
+  end
+  ds_mov_array
 end
 
-
 def gross_per_studio(collection)
-  # GOAL: Given an Array of Hashes where each Hash represents a movie,
-  # return a Hash that includes the total worldwide_gross of all the movies from
-  # each studio.
-  #
-  # INPUT:
-  # * collection: Array of Hashes where each Hash where each Hash represents a movie
-  #
-  # RETURN:
-  #
-  # Hash whose keys are the studio names and whose values are the sum
-  # total of all the worldwide_gross numbers for every movie in the input Hash
+  movie_no = 0
+  studio_grosses = {}
+  while movie_no < collection.length do
+    studio_key = collection[movie_no][:studio]
+    movie_gross = collection[movie_no][:worldwide_gross]
+    if !studio_grosses[studio_key] 
+      studio_grosses[studio_key] = movie_gross
+    else 
+      studio_grosses[studio_key] += movie_gross
+    end
+    movie_no += 1
+  end
+  studio_grosses
 end
 
 def movies_with_directors_set(source)
-  # GOAL: For each director, find their :movies Array and stick it in a new Array
-  #
-  # INPUT:
-  # * source: An Array of Hashes containing director information including
-  # :name and :movies
-  #
-  # RETURN:
-  #
-  # Array of Arrays containing all of a director's movies. Each movie will need
-  # to have a :director_name key added to it.
+  dir_no = 0
+  all_movies_by_dir = []
+  while dir_no < source.length do
+    dir_name = source[dir_no][:name]
+    dir_movies = source[dir_no][:movies]
+    all_movies_by_dir << movies_with_director_key(dir_name, dir_movies)
+    dir_no += 1
+  end
+  all_movies_by_dir
 end
 
 # ----------------    End of Your Code Region --------------------
