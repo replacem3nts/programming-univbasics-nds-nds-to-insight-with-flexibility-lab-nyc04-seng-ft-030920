@@ -47,7 +47,6 @@ end
 
 
 def gross_per_studio(collection)
- pp collection
   movie_no = 0
   studio_grosses = {}
   while movie_no < collection.length do
