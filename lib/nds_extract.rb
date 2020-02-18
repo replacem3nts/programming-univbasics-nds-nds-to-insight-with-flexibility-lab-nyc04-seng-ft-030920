@@ -56,7 +56,7 @@ def gross_per_studio(collection)
       studio_grosses[studio_key] += collection[movie_no][:worldwide_gross]
     }
     else {
-      studio_grosses[studio_key] => collection[movie_no][:worldwide_gross]
+      studio_grosses[":"[studio_key]] = collection[movie_no][:worldwide_gross]
     }
     end
     movie_no += 1
