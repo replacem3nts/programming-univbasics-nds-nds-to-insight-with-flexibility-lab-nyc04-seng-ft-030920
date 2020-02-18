@@ -67,7 +67,7 @@ def movies_with_directors_set(source)
     all_movies_by_d << source[d_no][:movies]
     d_no += 1
   end
- pp all_movies_by_d
+all_movies_by_d
   # GOAL: For each director, find their :movies Array and stick it in a new Array
   #
   # INPUT:
